@@ -29,6 +29,7 @@ This node supports the following operations with VTiger CRM:
 - List Types
 - Delete Entities
 - Describe Entity
+- Retrieve Files
 
 ## Credentials
 
@@ -49,8 +50,8 @@ The access key is the API key of the user you want to authenticate as. You can f
 
 ## Compatibility
 
-This node has been tested with VTiger version 6.\* and is expected to work with VTiger version 7 as well.
-
+This node has been tested with VTiger version 6.x-8.x
+This package is for N8N 2.x.
 ## Usage
 
 To effectively use this node, you should be familiar with the concepts of Entities, naming conventions, and module prefixes in VTiger. For the Query operation, a basic understanding of SQL is also required. You can refer to the official VTiger documentation to get a comprehensive understanding of the general usage of operations.
@@ -87,6 +88,8 @@ SELECT * FROM Leads WHERE email LIKE '%@domain.com';
 
 You can refer to the limitations of the query [here](https://community.vtiger.com/help/vtigercrm/developers/third-party-app-integration.html#query-operation)
 
+### Files Retrieve operation
+this operation needs `imageattachmentids` field content provided by Retrieve operation on a vtiger Document. 
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
@@ -94,8 +97,4 @@ You can refer to the limitations of the query [here](https://community.vtiger.co
 
 ## Version History
 
-- **v0.1.0**: Initial release.
-- **v0.1.1**: Fixed a bug in the `Update` operation.
-- **v0.1.2**: Fixed a bug in the `Query` operation.
-- **v0.1.3**: Remove code from error message.
-- **v0.1.4**: Update dependencies and use new INodeConnectionType types.
+- **v1.0.0**: Initial release.

@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-vtiger-crm",
-  "version": "0.1.4",
-  "description": "Interacts with Vtiger API",
+  "version": "1.0.0",
+  "description": "n8n community node for Vtiger CRM",
   "keywords": [
     "n8n-community-node-package",
     "vtiger",
@@ -9,13 +9,20 @@
     "api"
   ],
   "license": "MIT",
-  "author": {
+"autor": {
+    "name": "Angelo Paglialonga",
+    "email": "info@angelopaglialonga.com"
+  },
+  "contributors": [{
     "name": "Jamer Guzmán",
     "email": "jguzman@sogyo.net"
-  },
+  }],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sogjugz/n8n-nodes-vtiger-crm"
+    "url": "https://github.com/angelopaglialonga81/n8n-nodes-vtiger-crm"
+  },
+"bugs": {
+    "url": "https://github.com/angelopaglialonga81/n8n-nodes-vtiger-crm/issues"
   },
   "scripts": {
     "build": "npx rimraf dist && tsc && gulp build:icons"
