@@ -9,25 +9,29 @@
     "api"
   ],
   "license": "MIT",
-"autor": {
+  "autor": {
     "name": "Angelo Paglialonga",
     "email": "info@angelopaglialonga.com"
   },
-  "contributors": [{
-    "name": "Jamer Guzmán",
-    "email": "jguzman@sogyo.net"
-  }],
+  "contributors": [
+    {
+      "name": "Jamer Guzmán",
+      "email": "jguzman@sogyo.net"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/angelopaglialonga81/n8n-nodes-vtiger-crm"
   },
-"bugs": {
+  "bugs": {
     "url": "https://github.com/angelopaglialonga81/n8n-nodes-vtiger-crm/issues"
   },
   "scripts": {
     "build": "npx rimraf dist && tsc && gulp build:icons"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 2,
     "credentials": [
@@ -44,8 +48,9 @@
     "crypto-js": "^4.2.0"
   },
   "devDependencies": {
-    "typescript": "^5.8.3",
+    "@types/crypto-js": "^4.2.2",
     "gulp": "^5.0.1",
-    "rimraf": "^6.1.2"
+    "rimraf": "^6.1.2",
+    "typescript": "^5.8.3"
   }
 }

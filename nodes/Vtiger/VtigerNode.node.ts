@@ -7,7 +7,6 @@ import {
 	NodeConnectionType,
 } from 'n8n-workflow';
 import md5 from 'crypto-js/md5';
-
 export class VtigerNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'AP Vtiger CRM',
@@ -274,13 +273,13 @@ export class VtigerNode implements INodeType {
                 break;
                 case 'files_retrieve':
                 response = await this.helpers.httpRequest({
-                    baseURL: credential === null || credential === void 0 ? void 0 : credential.host,
+                    baseURL: credential?.host as string,
                     url: '/webservice.php',
                     method: 'GET',
                     qs: {
                         operation: 'files_retrieve',
                         sessionName: token,
-                        id: this.getNodeParameter('webservice_id_field', 0),
+                        id: this.getNodeParameter('webservice_id_field', 0) as string,
 					},
 					json: true,
 				});

@@ -41,7 +41,7 @@ The host is the URL of your VTiger CRM instance. It should be in the format `htt
 
 ### Username
 
-The username is ussualy the email address of the user you want to authenticate as.
+The username
 
 ### Access Key
 
