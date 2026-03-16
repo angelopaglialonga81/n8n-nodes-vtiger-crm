@@ -10,7 +10,7 @@ import md5 from 'crypto-js/md5';
 
 export class VtigerNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Vtiger CRM',
+		displayName: 'AP Vtiger CRM',
 		name: 'vtigerNode',
 		group: ['transform'],
 		version: 1,
@@ -20,8 +20,8 @@ export class VtigerNode implements INodeType {
 		defaults: {
 			name: 'Vtiger',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'vtigerApi',
@@ -64,6 +64,10 @@ export class VtigerNode implements INodeType {
 						name: 'Update',
 						value: 'update',
 					},
+					 {
+                            name: 'files_retrieve',
+                            value: 'files_retrieve',
+                        },
 				],
 				default: 'query',
 			},
@@ -75,7 +79,7 @@ export class VtigerNode implements INodeType {
 				default: '',
 				displayOptions: {
 					show: {
-						operation: ['retrieve', 'delete', 'update'],
+                            operation: ['retrieve', 'delete', 'update','files_retrieve'],
 					},
 				},
 				placeholder: '1x1234',
@@ -264,6 +268,19 @@ export class VtigerNode implements INodeType {
 						operation: 'retrieve',
 						sessionName: token as string,
 						id: this.getNodeParameter('webservice_id_field', 0) as string,
+						                    },
+                    json: true,
+                });
+                break;
+                case 'files_retrieve':
+                response = await this.helpers.httpRequest({
+                    baseURL: credential === null || credential === void 0 ? void 0 : credential.host,
+                    url: '/webservice.php',
+                    method: 'GET',
+                    qs: {
+                        operation: 'files_retrieve',
+                        sessionName: token,
+                        id: this.getNodeParameter('webservice_id_field', 0),
 					},
 					json: true,
 				});

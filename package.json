@@ -1,58 +1,44 @@
 {
-	"name": "n8n-nodes-vtiger-crm",
-	"version": "0.1.4",
-	"description": "Interacts with Vtiger API",
-	"keywords": [
-		"n8n-community-node-package",
-		"vtiger",
-		"crm",
-		"api"
-	],
-	"license": "MIT",
-	"homepage": "",
-	"author": {
-		"name": "Jamer Guzmán",
-		"email": "jguzman@sogyo.net"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/sogjugz/n8n-nodes-vtiger-crm"
-	},
-	"main": "index.js",
-	"scripts": {
-		"build": "npx rimraf dist && tsc && gulp build:icons",
-		"dev": "tsc --watch",
-		"format": "prettier nodes credentials --write",
-		"lint": "eslint nodes credentials package.json",
-		"lintfix": "eslint nodes credentials package.json --fix",
-		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
-	},
-	"files": [
-		"dist"
-	],
-	"n8n": {
-		"n8nNodesApiVersion": 1,
-		"credentials": [
-			"dist/credentials/VtigerApi.credentials.js"
-		],
-		"nodes": [
-			"dist/nodes/Vtiger/VtigerNode.node.js"
-		]
-	},
-	"devDependencies": {
-		"@types/node": "^20.14.2",
-		"@typescript-eslint/parser": "~8.32.0",
-		"eslint": "^8.57.0",
-		"eslint-plugin-n8n-nodes-base": "^1.16.3",
-		"gulp": "^5.0.0",
-		"prettier": "^3.5.3",
-		"typescript": "^5.8.2"
-	},
-	"peerDependencies": {
-		"n8n-workflow": "*"
-	},
-	"dependencies": {
-		"@types/crypto-js": "^4.2.2",
-		"crypto-js": "^4.2.0"
-	}
+  "name": "n8n-nodes-vtiger-crm",
+  "version": "0.1.4",
+  "description": "Interacts with Vtiger API",
+  "keywords": [
+    "n8n-community-node-package",
+    "vtiger",
+    "crm",
+    "api"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Jamer Guzmán",
+    "email": "jguzman@sogyo.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sogjugz/n8n-nodes-vtiger-crm"
+  },
+  "scripts": {
+    "build": "npx rimraf dist && tsc && gulp build:icons"
+  },
+  "files": ["dist"],
+  "n8n": {
+    "n8nNodesApiVersion": 2,
+    "credentials": [
+      "dist/credentials/VtigerApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Vtiger/VtigerNode.node.js"
+    ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "gulp": "^5.0.1",
+    "rimraf": "^6.1.2"
+  }
 }
