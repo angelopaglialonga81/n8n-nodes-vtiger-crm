@@ -67,8 +67,44 @@ export class VtigerNode implements INodeType {
                             name: 'files_retrieve',
                             value: 'files_retrieve',
                         },
+					{
+						name: 'Custom GET',
+						value: 'custom_get',
+					},
+					{
+						name: 'Custom POST',
+						value: 'custom_post',
+					},
 				],
 				default: 'query',
+			},
+			{
+				displayName: 'Webservice Operation Name',
+				name: 'custom_operation_field',
+				type: 'string',
+				required: true,
+				default: '',
+				displayOptions: {
+					show: {
+						operation: ['custom_get', 'custom_post'],
+					},
+				},
+				placeholder: 'ex: llmreport',
+				description: 'Nome esatto della operation registrata in vtiger_ws_operation',
+			},
+			{
+				displayName: 'Parameters',
+				name: 'custom_params_field',
+				type: 'json',
+				default: '{}',
+				required: false,
+				displayOptions: {
+					show: {
+						operation: ['custom_get', 'custom_post'],
+					},
+				},
+				placeholder: '{"spec": "{\\"primaryModule\\":\\"Potentials\\", ...}"}',
+				description: 'Oggetto JSON con i parametri aggiuntivi richiesti dalla operation (oltre a operation e sessionName, già gestiti automaticamente)',
 			},
 			{
 				displayName: 'Entity ID',
@@ -321,6 +357,51 @@ export class VtigerNode implements INodeType {
 					json: true,
 				});
 				break;
+			case 'custom_get': {
+				const customOperationName = this.getNodeParameter('custom_operation_field', 0) as string;
+				const customParamsRaw = this.getNodeParameter('custom_params_field', 0);
+				const customParams =
+					typeof customParamsRaw === 'string'
+						? JSON.parse(customParamsRaw || '{}')
+						: (customParamsRaw as object) || {};
+
+				response = await this.helpers.httpRequest({
+					baseURL: credential?.host as string,
+					url: '/webservice.php',
+					method: 'GET',
+					qs: {
+						operation: customOperationName,
+						sessionName: token as string,
+						...customParams,
+					},
+					json: true,
+				});
+				break;
+			}
+			case 'custom_post': {
+				const customOperationName = this.getNodeParameter('custom_operation_field', 0) as string;
+				const customParamsRaw = this.getNodeParameter('custom_params_field', 0);
+				const customParams =
+					typeof customParamsRaw === 'string'
+						? JSON.parse(customParamsRaw || '{}')
+						: (customParamsRaw as object) || {};
+
+				response = await this.helpers.httpRequest({
+					baseURL: credential?.host as string,
+					url: '/webservice.php',
+					method: 'POST',
+					headers: {
+						'content-type': 'application/x-www-form-urlencoded',
+					},
+					body: {
+						operation: customOperationName,
+						sessionName: token as string,
+						...customParams,
+					},
+					json: true,
+				});
+				break;
+			}
 			default:
 				throw new NodeOperationError(this.getNode(), operation + ' operation is not implemented.');
 		}
