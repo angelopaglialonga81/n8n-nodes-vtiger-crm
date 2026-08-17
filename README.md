@@ -30,7 +30,8 @@ This node supports the following operations with VTiger CRM:
 - Delete Entities
 - Describe Entity
 - Retrieve Files
-
+- Call Custom webservices via GET
+- Call Custom webservices via POST
 ## Credentials
 
 The VTiger API requires authentication. You need to provide your VTiger CRM instance URL, a username and an access key with sufficient privileges to perform operations on the entities.
@@ -90,6 +91,10 @@ You can refer to the limitations of the query [here](https://community.vtiger.co
 
 ### Files Retrieve operation
 this operation needs `imageattachmentids` field content provided by Retrieve operation on a vtiger Document. 
+
+### GET / POST custom webservices
+this operation needs an operation field value with webservice name and a json like this: ```json{"spec": {{JSON.stringify($('Edit Fields').item.json.spec)}}}``` for parameters.
+
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
@@ -98,3 +103,4 @@ this operation needs `imageattachmentids` field content provided by Retrieve ope
 ## Version History
 
 - **v1.0.0**: Initial release.
+- **v1.2.0**: addes support for custom GET/POST webservices
