@@ -45,7 +45,6 @@
     "n8n-workflow": "*"
   },
   "dependencies": {
-    "@angelopaglialonga81/n8n-nodes-vtiger-crm": "file:angelopaglialonga81-n8n-nodes-vtiger-crm-1.2.0.tgz",
     "crypto-js": "^4.2.0"
   },
   "devDependencies": {
